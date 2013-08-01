@@ -3,7 +3,7 @@
 vid_file=$1
 cut_file=$2 # the file with the info on how to cut the video
 
-function extract 
+function extract	# uses $vid_file
 {
 declare out_file	# name of the extracted file
 declare -i end_min end_sec
