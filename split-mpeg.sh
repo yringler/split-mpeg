@@ -8,7 +8,7 @@
 vid_file=$1
 cut_file=$2 # the file with the info on how to cut the video
 readonly out_folder=${3:-cut}
-if ! [ -d $out_folder]; then mkdir $out_folder; fi
+if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 # finds amount of time between two times
 # args: start_min start_sec end_min end_sec 
