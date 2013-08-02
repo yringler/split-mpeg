@@ -7,6 +7,8 @@
 
 vid_file=$1
 cut_file=$2 # the file with the info on how to cut the video
+readonly out_folder=${3:-cut}
+if ! [ -d $out_folder]; then mkdir $out_folder; fi
 
 # finds amount of time between two times
 # args: start_min start_sec end_min end_sec 
@@ -65,7 +67,8 @@ while read start_min start_sec end_min end_sec out_file; do
 	# the easy part - for me at least 
 	# now is when the computer works a bit ;)
 	ffmpeg -ss $skip_arg -i $vid_file -ss $start_arg -t $length_arg \
-		-vcodec copy -acodec copy $out_file -loglevel warning
+		-vcodec copy -acodec copy $out_folder/$out_file \
+		-loglevel error
 done
 }
 
