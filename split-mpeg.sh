@@ -10,7 +10,8 @@ cut_file=$2 # the file with the info on how to cut the video
 # output: prints length_min length_sec to stdout
 function time_span	
 {
-	echo $* | read start_min start_sec end_min end_sec
+	# garbage is to catch any extra arguments
+	echo $* | read start_min start_sec end_min end_sec garbage
 
 	length_min = $(( end_min - start_min ))
 
