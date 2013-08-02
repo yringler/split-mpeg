@@ -55,10 +55,6 @@ while read start_min start_sec end_min end_sec out_file; do
 	read length_min length_sec <<< $(time_span \
 		$start_min $start_sec $end_min $end_sec)
 
-		# ffmpeg with -ss before and after -i goes fast to first
-		# then slow and acurate to second
-	read skip_min skip_arg <<< $(time_span 0 15 $start_min $start_sec)
-
 		## prepare time arguments for ffmpeg ##
 	skip_arg=$(ffmpeg_prepare $skip_min $skip_sec)
 	start_arg=$(ffmpeg_prepare $start_min $start_sec)
@@ -66,7 +62,7 @@ while read start_min start_sec end_min end_sec out_file; do
 
 	# the easy part - for me at least 
 	# now is when the computer works a bit ;)
-	ffmpeg -ss $skip_arg -i $vid_file -ss $start_arg -t $length_arg \
+	ffmpeg -i $vid_file -ss $start_arg -t $length_arg \
 		-vcodec copy -acodec copy $out_folder/$out_file \
 		-loglevel error
 done
