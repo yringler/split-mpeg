@@ -65,7 +65,7 @@ while read start_min start_sec end_min end_sec out_file; do
 	# the easy part - for me at least 
 	# now is when the computer works a bit ;)
 	ffmpeg -ss $skip_arg -i $vid_file -t $start_arg -ss $length_arg \
-		-vcodec copy -acodec $out_file -loglevel warning
+		-vcodec copy -acodec copy $out_file -loglevel warning
 done
 }
 
