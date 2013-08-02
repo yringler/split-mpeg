@@ -1,4 +1,7 @@
 #!/bin/bash
+# usage: split-mpeg.sh vid_file cut_file
+# see README for details
+
 # amount of time between two times INCLUDES START AND END SECOND
 # eg from sec 20 -> sec 25 is *20*,21,22,23,24,*25* = 6 seconds
 
