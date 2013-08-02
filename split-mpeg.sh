@@ -24,7 +24,7 @@ function time_span
 	# that makes 11 seconds: 30-20+1
 	# also if the seconds are the same
 	# eg start=1:20 end=2:20
-	if [ end_sec -ge start_sec ]; then
+	if [ $end_sec -ge $start_sec ]; then
 		let "length_sec = end_sec - start_sec + 1"
 	else
 	# the complicated case...
