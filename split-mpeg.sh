@@ -42,7 +42,7 @@ function ffmpeg_prepare	# prints min and sec with acceptable formating
 {
 	echo $* | read min sec
 	# check out the zero padding - thank you, jonathanwagner.net!
-	printf -v length_arg "00:%02d:%02d" $min $sec
+	printf "00:%02d:%02d" $min $sec
 }
 
 function extract	# uses $vid_file
