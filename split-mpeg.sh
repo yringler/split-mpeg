@@ -16,7 +16,7 @@ function time_span
 	# garbage is to catch any extra arguments
 	echo $* | read start_min start_sec end_min end_sec garbage
 
-	length_min = $(( end_min - start_min ))
+	length_min=$(( end_min - start_min ))
 
 		## find the length of seconds ##
 	# the simplest case to find length of partial minute
