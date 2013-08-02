@@ -14,7 +14,7 @@ cut_file=$2 # the file with the info on how to cut the video
 function time_span	
 {
 	# garbage is to catch any extra arguments
-	echo $* | read start_min start_sec end_min end_sec garbage
+	read start_min start_sec end_min end_sec garbage <<< $*
 
 	length_min=$(( end_min - start_min ))
 
@@ -40,7 +40,7 @@ function time_span
 
 function ffmpeg_prepare	# prints min and sec with acceptable formating
 {
-	echo $* | read min sec
+	read min sec <<< $*
 	# check out the zero padding - thank you, jonathanwagner.net!
 	printf "00:%02d:%02d" $min $sec
 }
@@ -50,12 +50,12 @@ function extract	# uses $vid_file
 while read start_min start_sec end_min end_sec out_file; do
 		## ffmpeg starts at offset, extracts duration ##
 		## but I use start and end so... ##
-	time_span $start_min $start_sec $end_min $end_sec | read \
-		length_min length_sec
+	read length_min length_sec <<< $(time_span \
+		$start_min $start_sec $end_min $end_sec)
 
 		# ffmpeg with -ss before and after -i goes fast to first
 		# then slow and acurate to second
-	time_span 0 15 $start_min $start_sec | read skip_min skip_sec
+	read skip_min skip_arg <<< $(time_span 0 15 $start_min $start_sec)
 
 		## prepare time arguments for ffmpeg ##
 	skip_arg=$(ffmpeg_prepare $skip_min $skip_sec)
