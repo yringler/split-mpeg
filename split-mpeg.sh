@@ -1,23 +1,22 @@
 #!/bin/bash
+# amount of time between two times INCLUDES START AND END SECOND
+# eg from sec 20 -> sec 25 is *20*,21,22,23,24,*25* = 6 seconds
 
 vid_file=$1
 cut_file=$2 # the file with the info on how to cut the video
 
-function extract	# uses $vid_file
+# finds amount of time between two times
+# args: start_min start_sec end_min end_sec 
+# output: prints length_min length_sec to stdout
+function time_span	
 {
-declare out_file	# name of the extracted file
-declare -i end_min end_sec
-declare -i length_min length_sec
-declare start_arg length_arg	# for ffmpeg - wants hh:mm:ss
+	echo $* | read start_min start_sec end_min end_sec
 
-while read start_min start_sec end_min end_sec out_file; do
-		## ffmpeg starts at offset, extracts duration ##
-		## but I use start and end so... ##
 	length_min = $(( end_min - start_min ))
 
 		## find the length of seconds ##
 	# the simplest case to find length of partial minute
-	# eg start=1:20 end=2:30 INCLUDEING SECOND 30
+	# eg start=1:20 end=2:30
 	# that makes 11 seconds: 30-20+1
 	# also if the seconds are the same
 	# eg start=1:20 end=2:20
@@ -31,15 +30,37 @@ while read start_min start_sec end_min end_sec out_file; do
 		let "length_sec = 60 - start_sec + end_sec"
 		let "--length_min"
 	fi
+	
+	echo $length_min $length_sec
+}
+
+function ffmpeg_prepare	# prints min and sec with acceptable formating
+{
+	echo $* | read min sec
+	# check out the zero padding - thank you, jonathanwagner.net!
+	printf -v length_arg "00:%02d:%02d" $min $sec
+}
+
+function extract	# uses $vid_file
+{
+while read start_min start_sec end_min end_sec out_file; do
+		## ffmpeg starts at offset, extracts duration ##
+		## but I use start and end so... ##
+	time_span $start_min $start_sec $end_min $end_sec | read \
+		length_min length_sec
+
+		# ffmpeg with -ss before and after -i goes fast to first
+		# then slow and acurate to second
+	time_span 0 15 $start_min $start_sec | read skip_min skip_sec
 
 		## prepare time arguments for ffmpeg ##
-	# check out the zero padding - thank you, jonathanwagner.net!
-	printf -v start_arg "00:%02d:%02d" $start_min $start_sec
-	printf -v length_arg "00:%02d:%02d" $length_min $length_sec
+	skip_arg=$(ffmpeg_prepare $skip_min $skip_sec)
+	start_arg=$(ffmpeg_prepare $start_min $start_sec)
+	length_arg=$(ffmpeg_prepare $length_min $length_sec)
 
 	# the easy part - for me at least 
 	# now is when the computer works a bit ;)
-	ffmpeg -i $vid_file -t $start_arg -ss length_arg
+	ffmpeg -ss $skip_arg -i $vid_file -t $start_arg -ss length_arg
 		-vcodec copy -acodec $out_file -loglevel warning
 done
 }
