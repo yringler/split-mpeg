@@ -47,8 +47,7 @@ function extract	# uses $vid_file
 while read start_min start_sec end_min end_sec out_file; do
 		## ffmpeg starts at offset, extracts duration ##
 		## but I use start and end so... ##
-	time_span $start_min $start_sec $end_min $end_sec | read \
-		length_min length_sec
+	time_span $* | read length_min length_sec
 
 		# ffmpeg with -ss before and after -i goes fast to first
 		# then slow and acurate to second
