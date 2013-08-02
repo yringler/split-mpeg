@@ -1,0 +1,10 @@
+split-mpeg
+==========
+
+ffmpeg based script to split an mpeg file into multiple parts based on config file
+
+usage: split-mpeg vidvile configfile
+config file: start_minutes start_seconds end_minutes end_seconds extract_name
+  eg: 0 2 2 3  part 1
+  Any number of cuts can be used
+  Cuts do not have to be in order
