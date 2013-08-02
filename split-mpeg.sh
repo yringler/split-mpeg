@@ -56,7 +56,6 @@ while read start_min start_sec end_min end_sec out_file; do
 		$start_min $start_sec $end_min $end_sec)
 
 		## prepare time arguments for ffmpeg ##
-	skip_arg=$(ffmpeg_prepare $skip_min $skip_sec)
 	start_arg=$(ffmpeg_prepare $start_min $start_sec)
 	length_arg=$(ffmpeg_prepare $length_min $length_sec)
 
