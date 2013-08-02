@@ -69,4 +69,4 @@ while read start_min start_sec end_min end_sec out_file; do
 done
 }
 
-cat $cut_file > extract 
+cat $cut_file | extract 
