@@ -15,8 +15,7 @@ readonly out_folder=${3:-cut}	# the folder where the pieces are put
 if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 function to_sec { echo $(( 60*$1+$2 )).${3:-0}; }
-function extract	# uses $vid_file
-{
+function extract {	# uses $vid_file
 # having the tenths last makes them optional
 while read start_min start_sec end_min end_sec out_file start_tenth end_tenth
 do
