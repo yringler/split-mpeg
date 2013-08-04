@@ -44,6 +44,15 @@ function flex_args {
 		read start_min start_sec start_tenth \
 			end_min end_sec end_tenth out_file \
 			<<< $a1 $a2 $a3 $a4 $out_file $a6 $a7
+	elif [ $a1 == c ]; then
+		# if is using continue format, where only puts in second time
+		if [ $(echo $a3 | sed -n /^[[:digit:]]*$/p) ]; then
+			# if a3 is a num, so three nums:using tenths
+			read end_min end_sec end_tenth out_file \
+				<<< $a1 $a2 $a3 $a4
+		else
+			read end_min end_sec out_file <<< $a1 $a2 $a3
+		fi
 	else
 		# not using tenths
 		read start_min start_sec end_min end_sec out_file \
