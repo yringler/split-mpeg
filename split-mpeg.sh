@@ -34,10 +34,28 @@ function calc_length {	# args:sec_a sec_b tenth_a tenth_b
 
 	echo ${diff_sec}.${diff_tenth}
 }
+
+# to allow two file formats, with and without tenths
+# where m=minute s=second t=tenth
+function flex_args {
+	# if out_file is a number, then using tenths
+	if [ $(echo $out_file | sed -n /^[[:digit:]]*$/p) ]; then
+	# remember, out_file here is a number - only in other form is out_file
+		read start_min start_sec start_tenth \
+			end_min end_sec end_tenth out_file \
+			<<< $a1 $a2 $a3 $a4 $out_file $a6 $a7
+	else
+		# not using tenths
+		read start_min start_sec end_min end_sec out_file \
+			<<< $a1 $a2 $a3 $a4 $out_file
+	fi
+}
+
 function extract {
-# having the tenths last makes them optional
-while read start_min start_sec end_min end_sec out_file start_tenth end_tenth
+# out_file is out_file if using non-tenth format
+while read a1 a2 a3 a4 out_file a6 a7
 do
+	flex_args
 	start_sec=$(to_sec $start_min $start_sec)
 	end_sec=$(to_sec  $end_min $end_sec)
 		## ffmpeg starts at offset, extracts duration ##
