@@ -16,17 +16,18 @@ if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 function to_sec { echo $(( 60*$1+$2 )); }	# args:minute,second
 function calc_length {	# args:sec_a sec_b tenth_a tenth_b
-	diff_sec=$(( $2 - $1 ))
-	if [[ $4 && $3 ]]; then
-		if [ $4 -ge $a ]; then 
-			diff_tenth=$(( $4-$3 ))
+	read sec_a sec_b tenth_a tenth_b <<< $(echo $*)
+	diff_sec=$(( $sec_b - $sec_b ))
+	if [[ $tenth_b && $tenth_a ]]; then
+		if [ $tenth_b -ge $tenth_a ]; then 
+			diff_tenth=$(( $tenth_b-$tenth_a ))
 		else 
 			# eg 0.9->1.2 = ->1.0->1.1->1.2	= 0.3 = 1-0.9+0.2
-			diff_tenth=$(( 1-$3+$4 ))
+			diff_tenth=$(( 1-$tenth_a+$tenth_b ))
 			let --diff_sec	# borrows from the seconds place
 		fi
-	elif [[ $4 || $3 ]]; then
-		diff_tenth=${4:-$3}
+	elif [[ $tenth_b || $tenth_a ]]; then
+		diff_tenth=${tenth_b:-$tenth_a}
 	else
 		diff_tenth=0
 	fi
