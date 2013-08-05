@@ -43,7 +43,7 @@ function flex_args {
 	if [ $a3 == end || $a4 == end ]
 		echo end
 	elif [ $a1 == load ]; then
-		echo "load"
+		echo load
 	# if out_file is a number, then using tenths
 	elif [ $(echo $out_file | sed -n /^[[:digit:]]*$/p) ]; then
 	# remember, out_file here is a number - only in other form is out_file
