@@ -1,6 +1,7 @@
 #!/bin/bash
 # usage: split-mpeg.sh vid_file cut_file
 # see README for details
+# (...this might be getting a little bit out of hand...)
 
 # Time is written in this program as when it would be displayed in a video 
 # player, ie 0:0:0 until 0:0:2 means from when 0 is displayed
