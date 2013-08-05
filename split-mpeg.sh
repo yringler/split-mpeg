@@ -35,6 +35,9 @@ function calc_length {	# args:sec_a sec_b tenth_a tenth_b
 	echo ${diff_sec}.${diff_tenth}
 }
 
+
+# only prints arg 1 if its an unsigned int
+function print_int { echo $1 | sed -n /^[[:digit:]]*$/p) ]; }
 # to allow 4 file formats: with and without tenths 
 # and continue from where last left off
 # and load a new file
@@ -42,20 +45,30 @@ function flex_args {
 	# config file tells to load new vid file
 	if [ $a3 == end || $a4 == end ]
 		echo end
-	elif [ $a1 == load ]; then
+	fi
+
+	if [ $a1 == load ]; then
 		echo load
+		return
+	fi
+
 	# if out_file is a number, then using tenths
-	elif [ $(echo $out_file | sed -n /^[[:digit:]]*$/p) ]; then
+	if [ $(print_int $out_file ]; then
 	# remember, out_file here is a number - only in other form is out_file
 		read start_min start_sec start_tenth \
 			end_min end_sec end_tenth out_file \
 			<<< $a1 $a2 $a3 $a4 $out_file $a6 $a7
 	elif [ $a1 == c ]; then
-		# if is using continue format, where only puts in second time
-		if [ $(echo $a3 | sed -n /^[[:digit:]]*$/p) ]; then
-			# if a3 is a num, so three nums:using tenths
+	# if is using continue format, where only puts in second time
+	# format: c m s [t] f	( c minute second [tenth-optional] file)
+		if [ $(print_int $a4) ]; then
+		# if a4 is a num, so three nums:using tenths
 			read end_min end_sec end_tenth out_file \
 				<<< $a1 $a2 $a3 $a4
+		# What if I continue to end?
+		# Then extract will ignore all the end times
+		# 	so I can leave this as is
+		# I hope...
 		else
 			read end_min end_sec out_file <<< $a1 $a2 $a3
 		fi
