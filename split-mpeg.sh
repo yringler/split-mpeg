@@ -21,7 +21,7 @@ function calc_length {	# args:sec_a tenth_a sec_b tenth_b
 	if [ $tenth_b -ge $tenth_a ]; then 
 		diff_tenth=$(( $tenth_b-$tenth_a ))
 	else 
-		# eg 0.9->1.2 = ->1.0->1.1->1.2	= 0.3 = 1-0.9+0.2
+		# eg 0.9->1.2 = ->1.0->1.1->1.2	= 0.3 = 1- 0.9 + 0.2
 		diff_tenth=$(( 1-$tenth_a+$tenth_b ))
 		let --diff_sec	# borrows from the seconds place
 	fi
