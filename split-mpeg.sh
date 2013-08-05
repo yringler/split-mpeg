@@ -34,7 +34,7 @@ function use_file {
 		vid_file=$a2
 		return
 	fi
-		# shift so $1 is first end arg #
+
 	if [ $1 == c ]; then
 		shift
 	else
@@ -45,12 +45,16 @@ function use_file {
 
 	if [ $1 == end ]; then
 		to_end=true
+		shift 1
 	else
 		to_end=
 
 		end_sec=$(to_sec $1 $2)
 		end_tenth=$3
+		shift 3
 	fi
+
+	out_file=$1
 
 	if [ ! $to_end ]; then
 			## ffmpeg starts at offset, extracts duration	##
