@@ -40,7 +40,9 @@ function calc_length {	# args:sec_a sec_b tenth_a tenth_b
 # and load a new file
 function flex_args {
 	# config file tells to load new vid file
-	if [ $a1 == load ]; then
+	if [ $a3 == end || $a4 == end ]
+		echo end
+	elif [ $a1 == load ]; then
 		echo "load"
 	# if out_file is a number, then using tenths
 	elif [ $(echo $out_file | sed -n /^[[:digit:]]*$/p) ]; then
@@ -70,17 +72,24 @@ function extract {
 # out_file is out_file if using non-tenth format
 while read a1 a2 a3 a4 out_file a6 a7
 do
-	if [ `flex_args` == load ]; then
+	status=`flex_args`
+	if [ $status == load ]; then
 		vid_file=$a2
 		continue
 	fi
 	start_sec=$(to_sec $start_min $start_sec)
-	end_sec=$(to_sec  $end_min $end_sec)
-		## ffmpeg starts at offset, extracts duration ##
-		## but I use start and end so... ##
-	length=$(calc_length $start_sec $end_sec $start_tenth $end_tenth)
+	if [ $status != end ]; then
+		end_sec=$(to_sec  $end_min $end_sec)
+			## ffmpeg starts at offset, extracts duration ##
+			## but I use start and end so... ##
+		length=$(calc_length $start_sec $end_sec \
+			$start_tenth $end_tenth)
+		length_section="-t $length"
+	else
+		length_section=
+	fi
 
-	ffmpeg -i $vid_file -ss $start_sec.$start_tenth -t $length \
+	ffmpeg -i $vid_file -ss $start_sec.$start_tenth $length_section\
 		-vcodec copy -acodec copy $out_folder/$out_file \
 		-loglevel error
 done
