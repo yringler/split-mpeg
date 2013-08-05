@@ -71,11 +71,14 @@ function flex_args {
 		# I hope...
 		else
 			read end_min end_sec out_file <<< $a1 $a2 $a3
+			end_tenth=0
 		fi
 	else
 		# not using tenths
 		read start_min start_sec end_min end_sec out_file \
 			<<< $a1 $a2 $a3 $a4 $out_file
+		start_tenth=
+		end_tenth=
 	fi
 
 	echo time
