@@ -37,7 +37,6 @@ function calc_length {	# args:sec_a sec_b tenth_a tenth_b
 
 # to allow three file formats: with and without tenths 
 # and continue from where last left off
-# where m=minute s=second t=tenth
 function flex_args {
 	# if out_file is a number, then using tenths
 	if [ $(echo $out_file | sed -n /^[[:digit:]]*$/p) ]; then
