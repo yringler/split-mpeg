@@ -84,6 +84,8 @@ do
 			## but I use start and end so... ##
 		length=$(calc_length $start_sec $end_sec \
 			$start_tenth $end_tenth)
+			# the length arg - if this is blank, goes to end
+			# allows "end" in flex_args to work
 		length_section="-t $length"
 	else
 		length_section=
