@@ -45,7 +45,7 @@ function use_file {
 
 	if [ $1 == end ]; then
 		to_end=true
-		shift 1
+		shift
 	else
 		to_end=
 
