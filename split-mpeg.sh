@@ -60,7 +60,7 @@ function use_file {
 			## ffmpeg starts at offset, extracts duration	##
 			## but I use start and end so... 		##
 		length=$(calc_length $start_sec $start_tenth
-			$end_tenth $end_tenth)
+			$end_sec $end_tenth)
 		length_section="-t $length"
 	else
 		length_section=
