@@ -36,6 +36,8 @@ function use_file {
 	fi
 
 	if [ $1 == c ]; then
+		start_sec=$end_sec
+		start_tenth=$end_tenth
 		shift
 	else
 		start_sec=$(to_sec $1 $2)
