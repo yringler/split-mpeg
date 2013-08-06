@@ -1,13 +1,22 @@
 split-mpeg
 ==========
 
-ffmpeg based script to split an mpeg file into multiple parts based on config file
+ffmpeg based script to split an mpeg file into multiple parts 
+based on config file
+* the original file is unchanged *
 
-usage: split-mpeg vidvile configfile
-config file: start_minutes start_seconds end_minutes end_seconds extract_name \
-	start_tenths end_tenths
-	eg: 0 2 2 3  part_1 7 4
-		where the 7 and 4 are the start_tenths and end_tenths. 
-		Tenths are optional.
+usage: split-mpeg configfile
+config file: 
+	cut: m t s m t f
+		where m=minute s=second and t=tenth of start and end
+		c (for continue) can be used unstead of the first mst set
+			and will use last end as new start
+		end can be used for 2nd mst set, and will go to end of video
+	file is the name of the section-file (must be mp4)
+	eg: 0 2 5 	20 31 78	out.mp4
+		where the 7 and 4 are the start_tenths and end_tenths
+		any amount of whitespace can be used
 	Any number of cuts can be used
 	Cuts do not have to be in order
+	load video: eg: load in_file.mp4
+		makes in_file.mp4 the new file to cut
