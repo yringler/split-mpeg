@@ -15,9 +15,12 @@ readonly out_folder=${3:-cut}	# the folder where the pieces are put
 if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 function to_sec { echo $(( 60*$1+$2 )); }	# args:minute,second
+
 function calc_length {	# args:sec_a tenth_a sec_b tenth_b
 	read sec_a tenth_a sec_b tenth_b <<< $(echo $*)
+
 	diff_sec=$(( $sec_b - $sec_a ))
+
 	if [ $tenth_b -ge $tenth_a ]; then 
 		diff_tenth=$(( $tenth_b-$tenth_a ))
 	else 
@@ -30,8 +33,8 @@ function calc_length {	# args:sec_a tenth_a sec_b tenth_b
 }
 
 function use_file {
-	if [ $status == load ]; then
-		vid_file=$a2
+	if [ $1 == load ]; then
+		vid_file=$2
 		return
 	fi
 
@@ -40,6 +43,7 @@ function use_file {
 		start_tenth=$end_tenth
 		shift
 	else
+		# combine minutes and seconds
 		start_sec=$(to_sec $1 $2)
 		start_tenth=$3
 		shift 3
@@ -65,6 +69,7 @@ function use_file {
 			$end_sec $end_tenth)
 		length_section="-t $length"
 	else
+		# so seeks to start, goes to end
 		length_section=
 	fi
 
