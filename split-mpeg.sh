@@ -33,6 +33,8 @@ function calc_length {	# args:sec_a tenth_a sec_b tenth_b
 }
 
 function use_file {
+	if ! [ "$1" ]; then return; fi
+
 	if [ $1 == load ]; then
 		vid_file=$2
 		return
