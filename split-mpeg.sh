@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: split-mpeg.sh vid_file cut_file
+# usage: split-mpeg.sh vid_file cut_file [out_folder]
 # see README for details
 
 # Time is written in this program as when it would be displayed in a video 
