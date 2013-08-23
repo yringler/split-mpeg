@@ -16,26 +16,6 @@ if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 function to_sec { echo $(( 60*${1?}+${2?} )); }	# args:minute,second
 
-function calc_length {	# args:sec_a tenth_a sec_b tenth_b
-	sec_a=${1?err:sec_a missing}
-	tenth_a=${2?err:tenth_a missing}
-	sec_b=${3?err:sec_b missing}
-	tenth_b=${4?err:tenth missing}
-
-	diff_sec=$(( $sec_b - $sec_a ))
-
-	if [ $tenth_b -ge $tenth_a ]; then 
-		diff_tenth=$(( tenth_b-tenth_a ))
-	else 
-		# eg 0.9->1.2 = ->1.0->1.1->1.2	= 0.3 = 1- 0.9 + 0.2
-		# has to be ten, b/c "tenth" is int
-		diff_tenth=$(( 10-$tenth_a+$tenth_b ))
-		let --diff_sec	# borrows from the seconds place
-	fi
-
-	echo ${diff_sec}.${diff_tenth}
-}
-
 function use_file {
 	if ! [ "$1" ]; then  echo asdf && return; fi
 
@@ -54,13 +34,12 @@ function use_file {
 	fi
 
 	if [ $1 == end ]; then
-		to_end=true
+		length_section=
 		shift
 	else
-		to_end=
-
 		end_sec=$(to_sec ${1?} ${2?})
 		end_tenth=${3?}
+		length_section="-to ${end_sec}.$end_tenth"
 		shift 3
 	fi
 
@@ -68,17 +47,6 @@ function use_file {
 	if [ -e $out_folder/$out_file ]; then 
 		echo $out_file:exists
 		return
-	fi
-
-	if [ ! $to_end ]; then
-			## ffmpeg starts at offset, extracts duration	##
-			## but I use start and end so... 		##
-		length=$(calc_length $start_sec $start_tenth \
-			$end_sec $end_tenth)
-		length_section="-t ${length?}"
-	else
-		# so seeks to start, goes to end
-		length_section=
 	fi
 
 	ffmpeg -i $vid_file -ss $start_sec.$start_tenth $length_section\
