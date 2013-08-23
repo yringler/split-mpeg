@@ -1,4 +1,4 @@
-load 00000.mp4
+load 00000.MTS
 0 2 0 		5 14 5		1_rf.mp4
 c		5 31 0		2_me.mp4
 c		7 34 7		3_rf.mp4
@@ -8,7 +8,7 @@ c		9 17 3		6_conclusion.mp4
 c		9 46 0		7_me.mp4
 c		16 47 0		8_rf.mp4
 
-load 00001.mp4
+load 00001.MTS
 0 0 0		6 15 5 		9_rf_c.mp4
 c		6 22 5 		8_me.mp4
 c		6 32 0 		9_rf_repeat_cool.mp4
@@ -27,10 +27,10 @@ c		14 26 0 	16_shochet_here.mp4
 22 59 0 	23 6  0 	22_response_b.mp4 
 23 12 0 	end		23_pgh.mp4
 
-load 00002.mp4
+load 00002.MTS
 0  0  0		0 0 45 		24_pgh_b.mp4
 
-load 00003.mp4
+load 00003.MTS
 0 0 4		3 25 0		25_Posul_Tfillin.mp4
 c		5 31 0		26_me.mp4
 5 51 7		10 59 0		27_shochet_politics.mp4
@@ -49,7 +49,7 @@ c		19 14 0		38_intro.mp4
 21 31 0		23 48 7		40_s1.mp4
 c		end		41_s2.mp4
 
-load 00004
+load 00004.MTS
 0 0 0		0 42 0		42_no_description.mp4
 c		2 19 0		43_me_end_and_yiddish.mp4
 c		2 40 0		44_yiddish.mp4
