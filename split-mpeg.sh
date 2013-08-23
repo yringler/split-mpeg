@@ -8,7 +8,8 @@
 # or more concisely ->1->2
 # which is 2 complete seconds
 
-cut_file=$1 # the file with the info on how to cut the video
+# the file with the info on how to cut the video
+readonly cut_file=${1:?error:info_file missing} 
 
 readonly out_folder=${2:-cut}	# the folder where the pieces are put
 if ! [ -d $out_folder ]; then mkdir $out_folder; fi
