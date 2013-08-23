@@ -80,6 +80,6 @@ function use_file {
 		-loglevel error
 }
 
-while read line; do
+cat $cut_file | while read line ; do
 	use_file $line
 done
