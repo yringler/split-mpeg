@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: split-mpeg.sh vid_file cut_file [out_folder]
+# usage: split-mpeg.sh cut_file [out_folder]
 # see README for details
 
 # Time is written in this program as when it would be displayed in a video 
@@ -8,10 +8,9 @@
 # or more concisely ->1->2
 # which is 2 complete seconds
 
-vid_file=$1
-cut_file=$2 # the file with the info on how to cut the video
+cut_file=$1 # the file with the info on how to cut the video
 
-readonly out_folder=${3:-cut}	# the folder where the pieces are put
+readonly out_folder=${2:-cut}	# the folder where the pieces are put
 if ! [ -d $out_folder ]; then mkdir $out_folder; fi
 
 function to_sec { echo $(( 60*$1+$2 )); }	# args:minute,second
