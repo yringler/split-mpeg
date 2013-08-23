@@ -36,8 +36,13 @@ function use_file {
 	if ! [ "$1" ]; then return; fi
 
 	if [ $1 == load ]; then
-		vid_file=$2
-		return
+		if ! [ -e "$2" ]; then
+			echo $2:not found
+			exit
+		else
+			vid_file=$2
+			return
+		fi
 	fi
 
 	if [ $1 == c ]; then
