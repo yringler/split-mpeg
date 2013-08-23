@@ -77,7 +77,6 @@ function use_file {
 	ffmpeg -i $vid_file -ss $start_sec.$start_tenth $length_section\
 		-vcodec copy -acodec copy $out_folder/$out_file \
 		-loglevel error
-done
 }
 
 while read line; do
