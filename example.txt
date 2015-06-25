@@ -1,18 +1,18 @@
 load 00000.MTS
-0 2 0 		5 14 5		1_rf.mp4
+0 2 0 		5 14 5		1_first_time_in_770_rayatz.mp4
 c		5 31 0		2_me.mp4
-c		7 34 7		3_rf.mp4
+c		7 34 7		3_first_rayatz_table_description.mp4
 c		7 41 5		4_me.mp4
-c		9 2  4		5_how_in.mp4
+c		9 2  4		5_how_to_get_in.mp4
 c		9 17 3		6_conclusion.mp4
 c		9 46 0		7_me.mp4
-c		16 47 0		8_rf.mp4
+c		16 47 0		8_rf_brother_draft.mp4
 
 load 00001.MTS
-0 0 0		6 15 5 		9_rf_c.mp4
-c		6 22 5 		8_me.mp4
-c		6 32 0 		9_rf_repeat_cool.mp4
-6 37 0		8 6  0 		10_rf_next.mp4
+0 0 0		6 15 5 		9_rf_draft_p2.mp4
+c		6 22 5 		10a_me.mp4
+c		6 32 0 		10b_rf_draft_repeat_cool.mp4
+6 37 0		8 6  0 		10c_rf_yechidus_camp_food.mp4
 c		8 19 0 		11_pause.mp4
 c		10 53 0 	12_beard_nun.mp4
 11 3 0		13 15 7		13_shochect_mexican.mp4
@@ -20,7 +20,7 @@ c		13 16 2 	14_tap.mp4
 13 16 0		13 26 0 	15_me.mp4
 c		14 26 0 	16_shochet_here.mp4
 14 27 0		14 33 2 	17_me_safrus.mp4
-14 34 0		22 34 0		18_rf_draft
+14 34 0		22 34 0		18_rf_draft.mp4
 22 37 0		22 51 0 	19_me_perush.mp4
 22 51 0 	22 58 0 	20_response_a.mp4
 22 58 0 	22 59 0 	21_me.mp4
@@ -28,18 +28,18 @@ c		14 26 0 	16_shochet_here.mp4
 23 12 0 	end		23_pgh.mp4
 
 load 00002.MTS
-0  0  0		0 0 45 		24_pgh_b.mp4
+0  0  0		0 45 0 		24_pgh_b.mp4
 
 load 00003.MTS
 0 0 4		3 25 0		25_Posul_Tfillin.mp4
 c		5 31 0		26_me.mp4
 5 51 7		10 59 0		27_shochet_politics.mp4
 c		11 11 0		28_me.mp4
-c		12 56 0		29_why_ons.mp4
+c		12 56 0		29_why_unions.mp4
 c		14 27 0		30_shlemus_haaretz.mp4
 c		15 50 0		31_me.mp4
 15 50 6		16 20 0		32_how_Rebbe_Rayatz_spoke.mp4
-16 53 0		17 22 0		33_find_date__skip__.mp4
+16 53 0		17 22 0		33_find_date_skip_.mp4
 c		17 47 0		34_when_spoke.mp4
 c		18 26 0		35_The_Rebbe_farbrenging.mp4
 18 36 0		18 40 0		36_farb_recall_intro.mp4
@@ -53,3 +53,46 @@ load 00004.MTS
 0 0 0		0 42 0		42_no_description.mp4
 c		2 19 0		43_me_end_and_yiddish.mp4
 c		2 40 0		44_yiddish.mp4
+
+load 00005.MTS
+0 41 0	6 27 0		45_Pgh_rebbe_mikva.mp4
+c		7 13 0		46_Chabad_pgh.mp4
+c		7 40 0		47_Ringing.mp4
+c		8 53 0		48_transport_bus_trolley.mp4
+c		11 14 0		49_no_refugee_no_pickup.mp4
+c		11 29 0		50_me_question_here_when_rayatz_arrived.mp4
+c		12 22 0		51_general_when_rayatz_arrived.mp4
+c		13 28 0		52_heard_that_one_already.mp4
+c		13 58 0		53_us_me_ask_why_came_to_770.mp4
+c		14 30 0		54_r4_coldness.mp4
+c		14 40 0		55_me_ask_why_search_chabad_as_solution.mp4
+c		15 25 0		56_general_why_chabad.mp4
+c		16 19 0		57_daughter_interview_adice.mp4
+c		17 30 0		58_me_probing.mp4
+c		21 24 0		59_exploring_ny_jewry_lower_east_side_vs_chabad.mp4
+c		end		60_yud_shevat_staying_in_pgh.mp4
+
+load 00006.MTS
+0 0 0	0 7 0		61_staying_part_2.mp4
+c		0 50 0		62_me_probe_crazy_time_after_rayatz_histalkus.mp4
+
+load 00007.MTS
+0 0 0	1 36 0		63_about_school.mp4
+c		2 14 0		64_null.mp4
+c		2 18 0		65_q_greenglass.mp4
+c		3 38 0		66_greenglass_pgh_families.mp4
+c		8 18 0		67_fishing.mp4
+c		8 35 0		68_ending_fishing.mp4
+c		10 16 0		69_shochet.mp4
+c		11 20 0		70_q_whered_they_go.mp4
+c		12 38 0		71_answer_empire.mp4
+c		13 01 0 	72_shochet_continue_till_ring.mp4
+c		13 07 0		73_me_lets_wait.mp4
+
+load 00008.MTS
+0 0 0	0 13 0		74_reprompt_story.mp4
+c		0 42 0		75_shochet_end.mp4
+c		end			76_int_end.mp4
+
+load 00009.MTS
+0 0 0 end			77_rando_conversation_fragment.mp4
